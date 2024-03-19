@@ -1,16 +1,25 @@
 import streamlit as st
 
 def main():
-    st.title("User Information")
+    st.title("Age Classifier")
 
     # Get user input
     name = st.text_input("Enter your name:")
-    age = st.number_input("Enter your age:", min_value=0, max_value=150, step=1)
-    gender = st.selectbox("Select your gender:", ["Male", "Handsome", "Beautiul"])
+    age = st.number_input("Enter your age:", min_value=0)
+
+    # Determine age category
+    if age < 18:
+        message = f"{name}, you are a child."
+    elif age == 18:
+        message = f"{name}, you are an adult."
+    elif age > 18:
+        message = f"{name}, you are young."
+    else:
+        message = f"{name}, please enter a valid age."
 
     # Display message
     if st.button("Submit"):
-        st.write(f"Your name is {name}, your age is {age}, and you are {gender}.")
+        st.write(message)
 
 if __name__ == "__main__":
     main()
